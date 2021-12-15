@@ -4,9 +4,10 @@ import {
   FormControl,
   FormGroup,
   ValidationErrors,
-  Validators
+  Validators,
 } from '@angular/forms';
-
+import { Person } from '../../model/person';
+import { EnrollmentServcie } from '../../service/enrollment.service';
 @Component({
   selector: 'app-userreg',
   templateUrl: './userreg.component.html',
@@ -15,28 +16,37 @@ import {
 export class UserregComponent implements OnInit {
   submitted = false;
   registered = false;
-<<<<<<< HEAD
-=======
-
->>>>>>> a39774c9ec77d8936de02cbbd1b2b916f5d7a38a
   userForm: FormGroup = new FormGroup({});
 
-  constructor(public formBuilder: FormBuilder) { }
+  constructor(
+    public formBuilder: FormBuilder,
+    public person: Person,
+    private enrollmentService: EnrollmentServcie
+  ) {}
 
   ngOnInit() {
+    this.person = new Person(this.userForm.value);
     this.userForm = this.formBuilder.group({
-      first_name: [
+      name: [
         '',
         [Validators.required, Validators.pattern('^[A-Z]{1}[a-z]{3,}$')],
       ],
-      second_name: [
+      surname: [
         '',
         [Validators.required, Validators.pattern('^[A-Z]{1}[a-z]{3,}$')],
       ],
-      home_address: ['', [Validators.required]],
-      email_address: ['', [Validators.required, Validators.email]],
+      address: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required, Validators.pattern('^[1-9][0-9]*$')]],
       password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(5),
+          Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),
+        ],
+      ],
+      login: [
         '',
         [
           Validators.required,
@@ -49,7 +59,7 @@ export class UserregComponent implements OnInit {
 
   invalidFirstName(): boolean {
     const result =
-      !this.isFormControlValid(this.userForm.controls.first_name.errors) &&
+      !this.isFormControlValid(this.userForm.controls.name.errors) &&
       !this.isFormSubmitted();
     console.log('invalid first name', result);
     return result;
@@ -57,7 +67,7 @@ export class UserregComponent implements OnInit {
 
   invalidSecondName(): boolean {
     const result =
-      !this.isFormControlValid(this.userForm.controls.second_name.errors) &&
+      !this.isFormControlValid(this.userForm.controls.surname.errors) &&
       !this.isFormSubmitted();
     console.log('invalid sname', result);
     return result;
@@ -65,7 +75,7 @@ export class UserregComponent implements OnInit {
 
   invalidAddress(): boolean {
     const result =
-      !this.isFormControlValid(this.userForm.controls.home_address.errors) &&
+      !this.isFormControlValid(this.userForm.controls.address.errors) &&
       !this.isFormSubmitted();
     console.log('invalidAddress:', result);
     return result;
@@ -73,7 +83,7 @@ export class UserregComponent implements OnInit {
 
   invalidEmailAddress(): boolean {
     const result =
-      !this.isFormControlValid(this.userForm.controls.email_address.errors) &&
+      !this.isFormControlValid(this.userForm.controls.email.errors) &&
       !this.isFormSubmitted();
     console.log('invalidEmail:', result);
     return result;
@@ -81,17 +91,12 @@ export class UserregComponent implements OnInit {
 
   invalidPhoneNo(): boolean {
     const result =
-<<<<<<< HEAD
       !this.isFormControlValid(this.userForm.controls.phone.errors) &&
-=======
-      !this.isPhoneValid(this.userForm.controls.phone.errors) &&
->>>>>>> a39774c9ec77d8936de02cbbd1b2b916f5d7a38a
       !this.isFormSubmitted();
     console.log('invalidPhone:', result);
     return result;
   }
 
-<<<<<<< HEAD
   // isPhoneValid(errors: ValidationErrors | null): boolean {
   //   return this.validatePhone(errors);
   // }
@@ -99,15 +104,6 @@ export class UserregComponent implements OnInit {
   // validatePhone(errors: ValidationErrors | null): boolean {
   //   return errors === null;
   // }
-=======
-  isPhoneValid(errors: ValidationErrors | null): boolean {
-    return this.validatePhone(errors);
-  }
-
-  validatePhone(errors: ValidationErrors | null): boolean {
-    return errors === null;
-  }
->>>>>>> a39774c9ec77d8936de02cbbd1b2b916f5d7a38a
 
   invalidPassword(): boolean {
     const result =
@@ -135,15 +131,16 @@ export class UserregComponent implements OnInit {
       console.log('wrong data');
     } else {
       this.registered = true;
+      console.log(this.person);
     }
+    this.enrollmentService.enroll(this.person).subscribe(
+      (data) => console.log('successfully written to backend'),
+      (error) => console.error('error')
+    );
   }
 
   getFormControl(name: string): FormControl {
-<<<<<<< HEAD
     return this.userForm.get(name) as FormControl;
-=======
-    return this.userForm.get('first_name') as FormControl;
->>>>>>> a39774c9ec77d8936de02cbbd1b2b916f5d7a38a
   }
 
   clearFormControlValue(name: string): void {
@@ -153,7 +150,6 @@ export class UserregComponent implements OnInit {
 
   hasValue(name: string): boolean {
     const fc = this.getFormControl(name);
-<<<<<<< HEAD
     return fc.value !== null && fc.value !== undefined && fc.value !== '';
   }
 
@@ -171,9 +167,4 @@ export class UserregComponent implements OnInit {
     }
     return '';
   }
-
-=======
-    return (fc.value !== null && fc.value !== undefined && fc.value !== '');
-  }
->>>>>>> a39774c9ec77d8936de02cbbd1b2b916f5d7a38a
 }

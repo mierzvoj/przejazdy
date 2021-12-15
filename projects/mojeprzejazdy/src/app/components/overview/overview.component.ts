@@ -1,16 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { Person } from '../../model/person';
 import { PersonService } from '../../service/person.service ';
-=======
->>>>>>> a39774c9ec77d8936de02cbbd1b2b916f5d7a38a
 
 @Component({
   selector: 'app-overview',
   templateUrl: './overview.component.html',
-<<<<<<< HEAD
   styleUrls: ['./overview.component.css'],
 })
 export class OverviewComponent implements OnInit {
@@ -53,15 +49,4 @@ export class OverviewComponent implements OnInit {
   onDblClick(row: Person): void {
     console.log('double click:', row);
   }
-=======
-  styleUrls: ['./overview.component.css']
-})
-export class OverviewComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
->>>>>>> a39774c9ec77d8936de02cbbd1b2b916f5d7a38a
 }
