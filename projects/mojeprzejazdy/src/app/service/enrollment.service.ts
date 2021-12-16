@@ -5,10 +5,10 @@ import { Person } from '../model/person';
 @Injectable({
   providedIn: 'root',
 })
-export class EnrollmentServcie {
-  _url = 'https://awps-dev.herokuapp.com/user/set';
+export class EnrollmentService {
+  _url = '/api/user/set';
 
-  constructor(private _http: HttpClient) {}
+  constructor(private _http: HttpClient) { }
 
   enroll(person: Person) {
     return this._http.post<any>(this._url, person);

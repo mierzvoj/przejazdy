@@ -1,13 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
   ValidationErrors,
-  Validators,
+  Validators
 } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { Person } from '../../model/person';
-import { EnrollmentServcie } from '../../service/enrollment.service';
+import { EnrollmentService } from '../../service/enrollment.service';
+@Injectable({
+  providedIn: 'root',
+})
 @Component({
   selector: 'app-userreg',
   templateUrl: './userreg.component.html',
@@ -17,15 +21,16 @@ export class UserregComponent implements OnInit {
   submitted = false;
   registered = false;
   userForm: FormGroup = new FormGroup({});
+  person: Person = new Person();
+
+  private dataSubscription: Subscription = Subscription.EMPTY;
 
   constructor(
     public formBuilder: FormBuilder,
-    public person: Person,
-    private enrollmentService: EnrollmentServcie
-  ) {}
+    private dataService: EnrollmentService
+  ) { }
 
   ngOnInit() {
-    this.person = new Person(this.userForm.value);
     this.userForm = this.formBuilder.group({
       name: [
         '',
@@ -131,12 +136,11 @@ export class UserregComponent implements OnInit {
       console.log('wrong data');
     } else {
       this.registered = true;
-      console.log(this.person);
+      console.log(this.userForm);
+      this.person = new Person(this.userForm.value);
+      this.dataSubscription.unsubscribe();
+      this.dataSubscription = this.dataService.enroll(this.userForm.value).subscribe();
     }
-    this.enrollmentService.enroll(this.person).subscribe(
-      (data) => console.log('successfully written to backend'),
-      (error) => console.error('error')
-    );
   }
 
   getFormControl(name: string): FormControl {
@@ -166,5 +170,9 @@ export class UserregComponent implements OnInit {
       return JSON.stringify(this.getFormControl(name)?.errors);
     }
     return '';
+  }
+
+  ngOnDestroy(): void {
+    this.dataSubscription.unsubscribe();
   }
 }
