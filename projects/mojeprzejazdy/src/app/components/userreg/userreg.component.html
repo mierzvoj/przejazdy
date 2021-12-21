@@ -1,29 +1,26 @@
 <h3>Moje Przejazdy</h3>
 <h4>User registration forms</h4>
-<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+
+<div *ngIf="loading" class="progress-spinner">
+  <mat-progress-spinner [mode]="'indeterminate'"> </mat-progress-spinner>
+</div>
+
+<form *ngIf="!loading" [formGroup]="userForm" (ngSubmit)="onSubmit()">
   <div class="container-fluid">
     <div class="row">
-      <mat-form-field class="example-form-field" appearance="fill">
-        <mat-label>First name</mat-label>
-        <input matInput type="text" [formControl]="getFormControl('name')" />
-        <mat-error *ngIf="invalidFirstName">{{
-          getErrorMessage("name")
-        }}</mat-error>
-        <button
-          *ngIf="hasValue('name')"
-          matSuffix
-          mat-icon-button
-          aria-label="Clear"
-          (click)="clearFormControlValue('name')"
-        >
-          <mat-icon>close</mat-icon>
-        </button>
-      </mat-form-field>
+      <app-input-text [formGroup]="userForm" [name]="'name'"> </app-input-text>
+      <app-input-text [formGroup]="userForm" [name]="'surname'">
+      </app-input-text>
+      <app-input-text [formGroup]="userForm" [name]="'email'"> </app-input-text>
+      <app-input-text [formGroup]="userForm" [name]="'phone'"> </app-input-text>
+      <app-input-text [formGroup]="userForm" [name]="'login'"> </app-input-text>
+      <app-input-text [formGroup]="userForm" [name]="'password'">
+      </app-input-text>
 
-      <mat-form-field class="example-form-field" appearance="fill">
+      <!-- <mat-form-field class="example-form-field" appearance="fill">
         <mat-label>Second name</mat-label>
         <input matInput type="text" [formControl]="getFormControl('surname')" />
-        <mat-error *ngIf="invalidSecondName">{{
+        <mat-error *ngIf="invalidFirstName">{{
           getErrorMessage("name")
         }}</mat-error>
         <button
@@ -35,43 +32,28 @@
         >
           <mat-icon>close</mat-icon>
         </button>
-      </mat-form-field>
+      </mat-form-field> -->
 
-      <mat-form-field class="example-form-field" appearance="fill">
+      <!-- <mat-form-field class="example-form-field"
+                      appearance="fill">
         <mat-label>Address</mat-label>
-        <input matInput type="text" [formControl]="getFormControl('address')" />
+        <input matInput
+               type="text"
+               [formControl]="getFormControl('address')" />
         <mat-error *ngIf="invalidAddress">{{
-          getErrorMessage("name")
-        }}</mat-error>
-        <button
-          *ngIf="hasValue('address')"
-          matSuffix
-          mat-icon-button
-          aria-label="Clear"
-          (click)="clearFormControlValue('address')"
-        >
-          <mat-icon>close</mat-icon>
-        </button>
-      </mat-form-field>
+                getErrorMessage("name")
+              }}</mat-error><button
+                *ngIf="hasValue('address')"
+                matSuffix
+                mat-icon-button
+                aria-label="Clear"
+                (click)="clearFormControlValue('address')"
+              >
+                <mat-icon>close</mat-icon>
+              </button>
+      </mat-form-field> -->
 
-      <mat-form-field class="example-form-field" appearance="fill">
-        <mat-label>Email address</mat-label>
-        <input matInput type="text" [formControl]="getFormControl('email')" />
-        <mat-error *ngIf="invalidEmailAddress">{{
-          getErrorMessage("name")
-        }}</mat-error>
-        <button
-          *ngIf="hasValue('email')"
-          matSuffix
-          mat-icon-button
-          aria-label="Clear"
-          (click)="clearFormControlValue('email')"
-        >
-          <mat-icon>close</mat-icon>
-        </button>
-      </mat-form-field>
-
-      <mat-form-field class="example-form-field" appearance="fill">
+      <!-- <mat-form-field class="example-form-field" appearance="fill">
         <mat-label>Phone no.</mat-label>
         <input matInput type="text" [formControl]="getFormControl('phone')" />
         <mat-error *ngIf="invalidPhoneNo">{{
@@ -86,9 +68,26 @@
         >
           <mat-icon>close</mat-icon>
         </button>
-      </mat-form-field>
+      </mat-form-field> -->
 
-      <mat-form-field class="example-form-field" appearance="fill">
+      <!-- <mat-form-field class="example-form-field" appearance="fill">
+        <mat-label>Login</mat-label>
+        <input matInput type="login" [formControl]="getFormControl('login')" />
+        <mat-error *ngIf="invalidPassword">{{
+          getErrorMessage("name")
+        }}</mat-error>
+        <button
+          *ngIf="hasValue('login')"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="clearFormControlValue('login')"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field> -->
+
+      <!-- <mat-form-field class="example-form-field" appearance="fill">
         <mat-label>Password</mat-label>
         <input
           matInput
@@ -107,24 +106,23 @@
         >
           <mat-icon>close</mat-icon>
         </button>
-      </mat-form-field>
-
-      <mat-form-field class="example-form-field" appearance="fill">
-        <mat-label>Login</mat-label>
-        <input matInput type="login" [formControl]="getFormControl('login')" />
-        <mat-error *ngIf="invalidPassword">{{
+      </mat-form-field> -->
+      <!-- <mat-form-field class="example-form-field" appearance="fill">
+        <mat-label>Email address</mat-label>
+        <input matInput type="text" [formControl]="getFormControl('email')" />
+        <mat-error *ngIf="invalidEmailAddress">{{
           getErrorMessage("name")
         }}</mat-error>
         <button
-          *ngIf="hasValue('login')"
+          *ngIf="hasValue('email')"
           matSuffix
           mat-icon-button
           aria-label="Clear"
-          (click)="clearFormControlValue('login')"
+          (click)="clearFormControlValue('email')"
         >
           <mat-icon>close</mat-icon>
         </button>
-      </mat-form-field>
+      </mat-form-field> -->
 
       <!-- <mat-form-field appearance="fill">
         <mat-label>Choose an option</mat-label>

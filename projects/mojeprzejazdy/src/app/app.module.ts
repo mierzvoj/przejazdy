@@ -8,6 +8,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
@@ -22,6 +24,8 @@ import { ScheduleComponent } from './components/schedule/schedule.component';
 import { TransitReserveComponent } from './components/transits/transit-reserve/transit-reserve.component';
 import { TransitsComponent } from './components/transits/transits.component';
 import { UserregComponent } from './components/userreg/userreg.component';
+import { InputTextComponent } from './components/common/inputs/input-text/input-text.component';
+import { AddressComponent } from './components/address/address.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +38,8 @@ import { UserregComponent } from './components/userreg/userreg.component';
     ScheduleDialogComponent,
     TransitsComponent,
     TransitReserveComponent,
+    InputTextComponent,
+    AddressComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,8 +57,10 @@ import { UserregComponent } from './components/userreg/userreg.component';
     HttpClientModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
