@@ -5,15 +5,17 @@
   <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input />
 </mat-form-field>
 
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSourceTransits" class="mat-elevation-z8">
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>ID</th>
     <td mat-cell *matCellDef="let route">{{ route.id }}</td>
   </ng-container>
 
   <ng-container matColumnDef="points">
-    <th mat-header-cell *matHeaderCellDef>Punkty</th>
-    <td mat-cell *matCellDef="let route">{{ route.points }}</td>
+    <th mat-header-cell *matHeaderCellDef>points</th>
+    <td mat-cell>
+      {{ getStreet() }}
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="valid">
