@@ -24,8 +24,8 @@ export class LoginComponent implements OnInit {
   password = '';
   submitted = false;
   loginForm: FormGroup = new FormGroup({
-    login: new FormControl('undefined', [Validators.required]),
-    password: new FormControl('undefined', [Validators.required]),
+    login: new FormControl('admin', [Validators.required]),
+    password: new FormControl('admin', [Validators.required]),
   });
 
   ngOnInit(): void { }
@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
     this.submitted = true;
     this.authService.authenticate(this.loginForm.value).subscribe((resp) => {
       if (resp === true) {
-        this.router.navigate(['/overview']);
+        this.router.navigate(['/transits']);
       } else {
       }
     });
