@@ -8,7 +8,7 @@ import { Person } from '../model/person';
 export class EnrollmentService {
   _url = '/api/user/set';
 
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient) {}
 
   enroll(person: Person) {
     return this._http.post<any>(this._url, person);
