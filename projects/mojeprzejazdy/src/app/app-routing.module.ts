@@ -23,7 +23,7 @@ const routes: Routes = [
       {
         path: 'persons',
         canActivate: [AuthGuard],
-        component: PersonsComponent,
+        component: PersonsComponent
       },
       {
         path: 'register',
@@ -48,18 +48,15 @@ const routes: Routes = [
           {
             path: 'transit-reserve',
             component: TransitReserveComponent,
-          },
+          }
         ],
       },
     ],
-  },
+  }
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forRoot(routes, { enableTracing: false, useHash: true }),
-  ],
+  imports: [CommonModule, RouterModule.forRoot(routes, { enableTracing: false, useHash: true })],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

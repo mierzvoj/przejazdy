@@ -16,6 +16,6 @@ export class AddressService {
   }
 
   fetchDataFromServer(): Observable<any> {
-    return this.httpClient.get('https://awps-dev.herokuapp.com/address/all');
+    return this.httpClient.get('/api/address/all');
   }
 }
