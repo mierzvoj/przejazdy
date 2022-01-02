@@ -6,7 +6,7 @@ import { Person } from '../model/person';
   providedIn: 'root',
 })
 export class EnrollmentService {
-  _url = '/api/user/set';
+  _url = 'https://awps-dev.herokuapp.com/user/set';
 
   constructor(private _http: HttpClient) {}
 

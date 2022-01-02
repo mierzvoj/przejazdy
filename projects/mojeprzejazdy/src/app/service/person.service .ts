@@ -15,6 +15,6 @@ export class PersonService {
   }
 
   fetchDataFromServer(): Observable<any> {
-    return this.httpClient.get('/api/user/getlist');
+    return this.httpClient.get('https://awps-dev.herokuapp.com/user/getlist');
   }
 }

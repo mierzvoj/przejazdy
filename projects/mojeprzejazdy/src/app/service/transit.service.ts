@@ -21,16 +21,18 @@ export class TransitService {
   }
 
   fetchDataFromServer(): Observable<Transit[]> {
-    return this.httpClient.get('/api/transit/all').pipe(
-      map((data) => {
-        const result: Transit[] = (data as Transit[]).map((item) => ({
-          ...item,
-          points: this.mapAddressesToPoints(item.address),
-        }));
-        console.log(result);
-        return result;
-      })
-    );
+    return this.httpClient
+      .get('https://awps-dev.herokuapp.com/transit/all')
+      .pipe(
+        map((data) => {
+          const result: Transit[] = (data as Transit[]).map((item) => ({
+            ...item,
+            points: this.mapAddressesToPoints(item.address),
+          }));
+          console.log(result);
+          return result;
+        })
+      );
   }
   mapAddressesToPoints(addresses: Address[]): string {
     return addresses.reduce((previous: string, current: Address) => {
