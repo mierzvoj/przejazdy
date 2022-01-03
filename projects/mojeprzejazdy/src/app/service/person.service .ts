@@ -3,7 +3,23 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Person } from '../model/person';
 
-const data: Person[] = [];
+const data: Person[] = [
+  {
+    id: 1,
+    name: 'John',
+    surname: 'Smiths',
+    login: 'JojoSmith1',
+    password: 'secretpassword1',
+    email: 'JS@pjatk.com.pl',
+    phone: 123123123,
+    address: {
+      street: 'Chwaszczyńska',
+      streetNo: 12,
+      city: 'Gdynia',
+      postcode: 78281,
+    },
+  },
+];
 @Injectable({
   providedIn: 'root',
 })
