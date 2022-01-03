@@ -1,5 +1,4 @@
 
-I solved same issue on heroku by using cors
 
 const express = require('express');
 const path = require('path');
