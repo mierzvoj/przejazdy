@@ -14,9 +14,9 @@ import { catchError, map } from 'rxjs/operators';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private _authenticated: boolean = false;
-  // private _loginUrl = '/api/user/login';
-  private _loginUrl =
-    'https://cors-anywhere.herokuapp.com/https://awps-dev.herokuapp.com/user/login';
+  private _loginUrl = '/api/user/login';
+  // private _loginUrl =
+  //   'https://awps-dev.herokuapp.com/user/login';
 
   constructor(private http: HttpClient) {}
 
