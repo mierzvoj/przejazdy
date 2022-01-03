@@ -23,6 +23,8 @@ export class AddressService {
   }
 
   fetchDataFromServer(): Observable<any> {
-    return this.httpClient.get('/api/address/all');
+    return this.httpClient.get(
+      'https://hidden-bastion-66804.herokuapp.com/https://awps-dev.herokuapp.com/address/all'
+    );
   }
 }

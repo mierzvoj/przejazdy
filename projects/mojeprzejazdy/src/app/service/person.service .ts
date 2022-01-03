@@ -31,6 +31,8 @@ export class PersonService {
   }
 
   fetchDataFromServer(): Observable<any> {
-    return this.httpClient.get('/api/user/getlist');
+    return this.httpClient.get(
+      'https://hidden-bastion-66804.herokuapp.com/https://awps-dev.herokuapp.com/user/getlist'
+    );
   }
 }
