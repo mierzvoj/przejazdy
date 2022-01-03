@@ -14,24 +14,25 @@ import { catchError, map } from 'rxjs/operators';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private _authenticated: boolean = false;
-  private _loginUrl = '/api/user/login';
+  // private _loginUrl = '/api/user/login';
+  private _loginUrl = 'https://awps-dev.herokuapp.com/user/login';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   authenticate(login: {
     login: string;
     password: string;
   }): Observable<boolean> {
-    return this.http.post<any>(this._loginUrl, login)
-      .pipe(
-        map(resp => {
-          this._authenticated = true;
-          return true;
-        }),
-        catchError(e => {
-          this._authenticated = false;
-          return of(false);
-        }));
+    return this.http.post<any>(this._loginUrl, login).pipe(
+      map((resp) => {
+        this._authenticated = true;
+        return true;
+      }),
+      catchError((e) => {
+        this._authenticated = false;
+        return of(false);
+      })
+    );
   }
 
   isAuthenticated(): boolean {
